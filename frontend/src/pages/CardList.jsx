@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
 import GridContainer from "./GridContainer";
 
 export default function CardList({ title, cards = [] }) {
@@ -27,9 +28,11 @@ const ListItem = ({ card }) => {
       <div className="h-[200px] w-[450px] bg-gray-100 rounded-lg">
         <div className="grid grid-cols-1 divide-gray-300 divide-y">
           <div>
-            <h3 className="font-bold text-black  text-xl px-8 py-1 ">
-              {title}
-            </h3>
+            <Link to={`/cards/` + id}>
+              <h3 className="font-bold text-black  text-xl px-8 py-1 hover:cursor-pointer hover:text-primary ">
+                {title}
+              </h3>
+            </Link>
           </div>
 
           <div>

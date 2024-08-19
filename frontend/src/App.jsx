@@ -10,6 +10,7 @@ import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
 import SearchCards from "./pages/SearchCards";
+import SingleCard from "./pages/SingleCard";
 
 function App() {
   const [orderPopup, setOrderPopup] = useState(false);
@@ -44,6 +45,7 @@ function App() {
           <Route path="/help" element={<HelpCenter />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/about" element={<About />} />
+          <Route path="/cards/:cardId" element={<SingleCard />} />
           <Route path="/cards/search" element={<SearchCards />} />
           <Route path="*" element={<NotFound />} />
         </Route>
