@@ -81,7 +81,7 @@ export const getAllCards: RequestHandler = async (req, res) => {
         limit: string;
     };
 
-    const cards = await CardModel.find().sort("-createdAt").skip((+pageNo - 1) * +limit)
+    const cards = await CardModel.find().sort("createdAt").skip((+pageNo - 1) * +limit)
         .limit(+limit);
 
 

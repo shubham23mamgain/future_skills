@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
 import Logo from "../../assets/ui.png";
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { HiMenuAlt3, HiMenuAlt1 } from "react-icons/hi";
 import ResponsiveMenu from "./Responsive";
+import AppSearchForm from "../AppSearchForm";
 
 export const NavbarLinks = [
   {
@@ -22,6 +23,12 @@ export const NavbarLinks = [
 
 const Navbar = ({ handleOrderPopup }) => {
   const [showMenu, setShowMenu] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (query) => {
+    navigate("/cards/search?title=" + query);
+  };
 
   const toggleMenu = () => {
     setShowMenu(!showMenu);
@@ -49,6 +56,14 @@ const Navbar = ({ handleOrderPopup }) => {
                   <li className="text-base">| </li>
                   <li className="py-2 text-base">
                     <NavLink to="/help">Help Center</NavLink>
+                  </li>
+
+                  <li>
+                    <AppSearchForm
+                      placeholder="Search Cards By Title"
+                      inputClassName="border-dark-subtle text-white focus:border-white sm:w-auto w-40 sm:text-lg"
+                      onSubmit={handleSearchSubmit}
+                    />
                   </li>
                 </ul>
               </div>

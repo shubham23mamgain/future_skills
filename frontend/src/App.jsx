@@ -1,5 +1,5 @@
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
@@ -9,6 +9,7 @@ import HelpCenter from "./pages/HelpCenter";
 import Contact from "./pages/Contact";
 import NotFound from "./pages/NotFound";
 import About from "./pages/About";
+import SearchCards from "./pages/SearchCards";
 
 function App() {
   const [orderPopup, setOrderPopup] = useState(false);
@@ -28,26 +29,25 @@ function App() {
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Layout
-                handleOrderPopup={handleOrderPopup}
-                orderPopup={orderPopup}
-                setOrderPopup={setOrderPopup}
-              />
-            }
-          >
-            <Route index element={<Abstract />} />
-            <Route path="/help" element={<HelpCenter />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/about" element={<About />} />
-            <Route path="*" element={<NotFound />} />
-          </Route>
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <Layout
+              handleOrderPopup={handleOrderPopup}
+              orderPopup={orderPopup}
+              setOrderPopup={setOrderPopup}
+            />
+          }
+        >
+          <Route index element={<Abstract />} />
+          <Route path="/help" element={<HelpCenter />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/cards/search" element={<SearchCards />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
     </>
   );
 }

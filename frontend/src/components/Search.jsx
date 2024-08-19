@@ -1,4 +1,33 @@
+import { useNavigate } from "react-router-dom";
+
+let timeoutId;
+
+const debounce = (func, delay) => {
+  return (...args) => {
+    if (timeoutId) clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      func.apply(null, args);
+    }, delay);
+  };
+};
+
 const Search = () => {
+  const search = (value) => {
+    console.log(value);
+  };
+
+  const handleChange = ({ target }) => {
+    debounceSearch(target.value);
+  };
+  const debounceSearch = debounce(search, 500);
+
+  const navigate = useNavigate();
+
+  const handleSearchSubmit = (query) => {
+    navigate("/cards/search?title=" + query);
+  };
+
   return (
     <div data-aos="zoom-in" className="mb-20 bg-search h-[350px]">
       <div className="container backdrop-blur-sm py-10">
@@ -11,6 +40,8 @@ const Search = () => {
             <input
               data-aos="fade-up"
               type="text"
+              value={search.value}
+              onChange={handleChange}
               id="submit-search"
               className="bg-gray-50 border border-black text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
               placeholder="Search"
@@ -18,6 +49,7 @@ const Search = () => {
             />
             <button
               type="button"
+              onSubmit={handleSearchSubmit}
               className="absolute inset-y-0 end-0 flex items-center pe-3"
             >
               <svg
